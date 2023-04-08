@@ -49,9 +49,9 @@ namespace MongoDBFieldEncryptionandDecryption
 
     class Program
     {
-        readonly static string databseName = "ConsoleAppTest";
-        readonly static string collectionName = "TestCollection";
-        readonly static string connectionString = "mongodb://localhost:27017";
+        readonly static string DatabseName = "ConsoleAppTest";
+        readonly static string CollectionName = "TestCollection";
+        readonly static string ConnectionString = "mongodb://localhost:27017";
 
         static string LocalMasterKey = "z6y8NecZcrC8zkCb8phTLp/hdnJpABsQ643xVgr5C0/pfO/p7jjYkqTXgzvsyYCZS/xvexE+U7BHAxZB4GmvD3aoSz3LJ3D+TQyBbj5R79cQL9s4WUxG8tvPhR/gOfRO";
 
@@ -65,8 +65,8 @@ namespace MongoDBFieldEncryptionandDecryption
            };
             kmsProviders.Add("local", localOptions);
 
-            var keyVaultClient = new MongoClient(connectionString);
-            var keyVaultNamespace = new CollectionNamespace(databseName, "__keymaterial");
+            var keyVaultClient = new MongoClient(ConnectionString);
+            var keyVaultNamespace = new CollectionNamespace(DatabseName, "__keymaterial");
 
 
             //  ClientEncryption instance
@@ -80,12 +80,12 @@ namespace MongoDBFieldEncryptionandDecryption
 
                 IMapper mapper = config.CreateMapper();
 
-                var clientSettings = MongoClientSettings.FromUrl(new MongoUrl(connectionString));
+                var clientSettings = MongoClientSettings.FromUrl(new MongoUrl(ConnectionString));
                 
 
-                var client = new MongoClient(connectionString);
-                var database = client.GetDatabase(databseName);
-                var collection = database.GetCollection<Employee>(collectionName);
+                var client = new MongoClient(ConnectionString);
+                var database = client.GetDatabase(DatabseName);
+                var collection = database.GetCollection<Employee>(CollectionName);
 
                 string originalSsn = "1234";
 
